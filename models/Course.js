@@ -9,8 +9,8 @@ const courseSchema = new Schema({
     },
     description: {
         type: String,
-        minLength: [20, "Course title must be at least 20 characters long"],
-        maxLength: [50, "Course title must be at most 50 characters long"],
+        minLength: [20, "Course description must be at least 20 characters long"],
+        maxLength: [50, "Course description must be at most 50 characters long"],
     },
     imageUrl: {
         type: String,
