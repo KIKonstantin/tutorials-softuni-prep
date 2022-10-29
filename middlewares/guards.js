@@ -11,7 +11,6 @@ function hasUser() {
 function isGuest() {
     return (req, res, next) => {
         if (req.user) {
-            // TODO check assignment for correct redirect
             res.redirect('/auth/login');
         } else {
             next();
@@ -19,7 +18,19 @@ function isGuest() {
     };
 };
 
+function isOwner() {
+    return (req, res, next) => {
+        if (req.user && res.locals.course.owner.toString() == req.user._id.toString()) {
+            res.locals.isOwner = true;
+            next();
+        } else {
+            res.redirect('/auth/login')
+        }
+    }
+}
+
 module.exports = {
     hasUser,
-    isGuest
+    isGuest,
+    isOwner
 }
